@@ -1,10 +1,10 @@
-# netease-cloud-music
+# 🔱netease-cloud-music🔱
 
-[![GoDoc](https://godoc.org/github.com/chaunsin/netease-cloud-music?status.svg)](https://godoc.org/github.com/chaunsin/netease-cloud-music) [![Go Report Card](https://goreportcard.com/badge/github.com/chaunsin/netease-cloud-music)](https://goreportcard.com/report/github.com/chaunsin/netease-cloud-music)
+[![GoDoc](https://godoc.org/github.com/chaunsin/netease-cloud-music?status.svg)](https://godoc.org/github.com/chaunsin/netease-cloud-music) [![Go Report Card](https://goreportcard.com/badge/github.com/chaunsin/netease-cloud-music)](https://goreportcard.com/report/github.com/chaunsin/netease-cloud-music) [![ci](https://github.com/chaunsin/netease-cloud-music/actions/workflows/ci.yml/badge.svg)](https://github.com/chaunsin/netease-cloud-music/actions/workflows/ci.yml) [![deploy image](https://github.com/chaunsin/netease-cloud-music/actions/workflows/deploy_image.yml/badge.svg)](https://github.com/chaunsin/netease-cloud-music/actions/workflows/deploy_image.yml)
 
 网易云音乐 Golang API 接口 + 命令行工具套件 + 一键完成任务
 
-# 声明
+## ⚠️ 声明
 
 **本项目仅供个人学习使用,切勿用于商业用途、非法用途使用！！！**
 
@@ -12,9 +12,9 @@
 
 **如有侵权即删！！！**
 
-# 功能
+## 📖 功能
 
-## 命令行 (ncmctl)
+### 命令行 (ncmctl)
 
 - [x] 一键每日任务完成(音乐合伙人、云贝签到、刷歌300首)
 - [x] 每日签到(云贝签到,连续签到奖励目前需要手动领取)
@@ -31,7 +31,7 @@
 - [ ] “音乐人”任务自动完成(待考虑)
 - [ ] proxy 代理
 
-## api
+### api
 
 - weapi 网页端、小程序使用
 - eapi PC端、移动端使用
@@ -41,18 +41,18 @@
 **提示:**
 目前主要实现了weapi也推荐使用weapi,接口相对较全，如需要其他接口可提 [issue](https://github.com/chaunsin/netease-cloud-music/issues)。
 
-# 要求
+## 💻 要求
 
 - golang >= 1.21
 - makefile (可选)
 - git (可选)
 - docker (可选)
 
-# ncmctl
+## ncmctl
 
-## 安装
+### 🔨 安装
 
-可执行文件安装
+**可执行文件安装**
 
 ```shell
 go install github.com/chaunsin/netease-cloud-music/cmd/ncmctl@latest
@@ -67,10 +67,11 @@ cd netease-cloud-music && make install
 
 **提示:** 默认会安装到`$GOPATH/bin`目录下
 
-docker版本镜像获取方式
+**docker版本镜像获取方式**
 
 ```shell
-docker pull chaunsin/ncmctl:latest
+docker pull chaunsin/ncmctl:latest # dockerhub镜像仓库
+docker pull ghcr.io/chaunsin/ncmctl:latest # github镜像仓库
 ```
 
 镜像仓库以及docker使用方式: https://hub.docker.com/r/chaunsin/ncmctl
@@ -84,7 +85,12 @@ cd netease-cloud-music && make build-iamge
 
 **提示:** 自行编译需要安装docker环境,另外受国服环境影响最好开梯子。
 
-## 使用
+**青龙脚本使用方式请参考:** 
+
+提示: 目前暂时有些问题不能使用,请谅解。
+[qinglong.md](docs/qinglong.md)
+
+### 🚀 使用
 
 **一、二维码登录**
 
@@ -93,8 +99,8 @@ ncmctl login qrcode
 ```
 
 **提示:** 使用手机登录网易云音乐app进行扫码授权登录，如果不能识别终端打印的二维码可根据终端输出得文件路径提示找到二维码图片进行扫描,或者copy终端输出得
-`qrcode content: https://www.163.com/xxx` 内容进行自己生成二维码再进行扫描(_粘贴时不要包含`qrcode content: `
-以及结尾空格_)。另外扫码过程中
+`qrcode content: https://www.163.com/xxx` 内容自己生成二维码再进行扫描(_粘贴时不要包含`qrcode content: `
+以及结尾空格_)。扫描有时效性,默认超时时间为5分钟,另外扫码过程中
 **不能退出终端**!!! 如有问题可重复此流程,为避免被风控不要频繁登录。
 
 在线生成二维码工具: https://www.bejson.com/convert/qrcode/#google_vignette
@@ -156,7 +162,7 @@ ncmctl download -l hires '1820944399'
 ncmctl download -l SQ 'https://music.163.com/song?id=1820944399' -o ./download/ 
 ```
 
-**提示:** 支持得音质有(从低到高) `standard/128 < higher/192 < exhigh/HQ/320 < lossless/SQ < hires/HR`
+**提示:** 支持得音质有(从低到高) `standard/128 < higher/192 < exhigh/HQ/320 < lossless/SQ < hires/HR` 参数可指定任意别名。
 
 3. 下载某一张专辑所有音乐,批量下载数量5(最大值20)
 
@@ -172,14 +178,14 @@ ncmctl download -p 5 'https://music.163.com/#/album?id=34608111'
 ncmctl download --strict 'https://music.163.com/#/artist?id=33400892'
 ```
 
-**提示:** `--strict`为严格默认,当歌曲没有对应品质的音乐时则会忽略下载,如果不指定`--strict`则默认下载次一级的音乐品质。
+**提示:** `--strict`为严格默认,当歌曲没有对应品质的音乐时则会忽略下载,如果不指定`--strict`则默认下载次一级的音乐品质。比如指定HR品质没有对应得资源则下载SQ。
 
 5. 下载某一歌单
 
 ```shell
-# web端
+# web端链接
 ncmctl download 'https://music.163.com/#/my/m/music/playlist?id=593617579'
-# pc端 
+# pc端链接 
 ncmctl download 'https://music.163.com/playlist?id=593617579'
 ```
 
@@ -197,7 +203,7 @@ ncmctl cloud '/Users/chaunsin/Music/谁为我停留 - 田震.mp3'
 ncmctl cloud '/Users/chaunsin/Music/' 
 ```
 
-**提示:** 默认批量上传数为3,最大为10,可指定`-p`参数设置,同时cloud支持按照自定义过滤条件进行上传详情可参考命令行。另外输入的目录深度不能超过3层。
+**提示:** 默认批量上传数为3,最大为10,可指定`-p`参数设置,同时cloud支持按照自定义过滤条件进行上传详情可使用`-h`参考命令行。另外输入的目录深度不能超过3层。
 
 **五、.ncm文件解析**
 
@@ -207,7 +213,7 @@ ncmctl cloud '/Users/chaunsin/Music/'
 ncmctl ncm '/Users/chaunsin/Music/' -o ./ncm
 ```
 
-**提示:** 支持批量解析,默认参数为10，可以指定`-p`参数设置数量。另外输入的目录深度不能超过3层。
+**提示:** 支持批量解析,默认参数为10，可以指定`-p`参数设置数量。同样输入的目录深度不能超过3层。
 
 **六、其他命令**
 
@@ -253,7 +259,7 @@ Use "ncmctl [command] --help" for more information about a command.
 
 **提示:** 内容以实际命令行为准
 
-# api
+## api
 
 参考如下
 
@@ -261,13 +267,13 @@ Use "ncmctl [command] --help" for more information about a command.
 - [云盘上传](example%2Fexample_cloud_upload_test.go)(需要登录)
 - [音乐下载](example%2Fexample_download_test.go)(需要登录)
 
-# 已知问题
+## ❓ 已知问题
 
-### 下载无损音乐品质不准确
+### 1.下载无损音乐品质不准确
 
 当使用`ncmctl`下载无损音乐指定`-l lossless`时,会存在下载Hi-Res品质音乐情况,如果歌曲不支持Hi-Res品质音乐,同时有无损品质音乐则正常下载无损音乐,问题还需要排查。
 
-### 每日刷歌300首为啥达不到300首
+### 2.每日刷歌300首为啥达不到300首
 
 `scrobble`是支持去重功能的,会在`$HOME/.ncmctl/database/`记录听过哪些歌曲记录，但是目前没有找到这样的一个接口,判断当前账户听过哪些歌曲,因此这就会造成每日听歌达不到300首的情况。
 
@@ -279,14 +285,14 @@ Use "ncmctl [command] --help" for more information about a command.
 另外还有一种极端情况,刷歌采用的歌单是top榜单歌曲(top榜单歌曲相对来说都是新歌,不同得歌单更新频率不一样)
 ，top榜单有50个左右，虽然看起来很多,但实际上还是存在不满足300首新歌情况,如果网易新歌曲更新得不及时,由于有判重复逻辑,因此还是会存在不满足300首得情况。
 
-### ncmctl task和scrobble、sign、partner子命令有啥区别？
+### 3.ncmctl task和scrobble、sign、partner子命令有啥区别？
 
 task命令是一个服务，默认执行是包含了scrobble、sign、partner子命令功能，启动之后会每天定时执行,如果把此命令部署到服务器上并配合
 `nohup`命令去启动就不用每天手动去执行一遍任务了。
 
 再说一下scrobble、sign、partner。这几个子命令不是服务，执行之后会立刻执行相应得任务并返回结果，不像task执行需要”到点了“才会执行。
 
-# 鸣谢
+## ❤️ 鸣谢
 
 - https://github.com/Binaryify/NeteaseCloudMusicApi
 - https://github.com/mos9527/pyncm
